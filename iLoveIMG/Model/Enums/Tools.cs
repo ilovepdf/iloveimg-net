@@ -21,5 +21,10 @@ namespace iLoveIMG.Model.Enums
         ///     Conver image
         /// </summary>
         [Description("convertimage")] ConvertImage = 1,
+
+        /// <summary>
+        ///     Conver image
+        /// </summary>
+        [Description("cropimage")] CropImage = 2,
     }
 }
