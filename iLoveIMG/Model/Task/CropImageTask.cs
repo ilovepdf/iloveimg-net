@@ -19,5 +19,15 @@ namespace iLoveIMG.Model.Task
 
             return base.Process(parameters);
         }
+
+        public ExecuteTaskResponse Process(CropParams parameters)
+        {
+            if (parameters == null)
+            {
+                parameters = new CropParams();
+            }
+
+            return base.Process(parameters);
+        }
     }
 }

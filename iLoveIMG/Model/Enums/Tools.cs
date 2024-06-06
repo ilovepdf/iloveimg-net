@@ -18,13 +18,23 @@ namespace iLoveIMG.Model.Enums
         [Description("compressimage")] CompressImage = 0,
 
         /// <summary>
-        ///     Conver image
+        ///     Convert image
         /// </summary>
         [Description("convertimage")] ConvertImage = 1,
 
         /// <summary>
-        ///     Conver image
+        ///     Crop image
         /// </summary>
         [Description("cropimage")] CropImage = 2,
+
+        /// <summary>
+        ///     Rotate image
+        /// </summary>
+        [Description("rotateimage")] RotateImage = 3,
+
+        /// <summary>
+        ///     Rotate image
+        /// </summary>
+        [Description("repairimage")] RepairImage = 4,
     }
 }
