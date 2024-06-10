@@ -33,8 +33,13 @@ namespace iLoveIMG.Model.Enums
         [Description("rotateimage")] RotateImage = 3,
 
         /// <summary>
-        ///     Rotate image
+        ///     Repair image
         /// </summary>
         [Description("repairimage")] RepairImage = 4,
+
+        /// <summary>
+        ///     Repair image
+        /// </summary>
+        [Description("resizeimage")] ResizeImage = 5,
     }
 }
