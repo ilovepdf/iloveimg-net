@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace iLoveIMG.Model.Enums
 {
-    public enum ResizeMode
+    public enum ResizeModeEnum
     {
         // <summary>
         ///     pixels
@@ -15,7 +15,7 @@ namespace iLoveIMG.Model.Enums
         [EnumMember(Value = "pixels")] Pixels,
 
         // <summary>
-        ///     pixels
+        ///     percentage
         /// </summary>
         [EnumMember(Value = "percentage")]Percentage
     }

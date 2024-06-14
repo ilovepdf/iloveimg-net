@@ -19,7 +19,7 @@ namespace iLoveIMG.Model.TaskParams
         ///     The width in pixels of the area to crop.
         /// </summary>
         [JsonProperty("resize_mode")]
-        public ResizeMode ResizeMode { get; set; }
+        public string ResizeMode { get; set; }
 
         /// <summary>
         ///     The width in pixels of the area to crop.
@@ -53,7 +53,7 @@ namespace iLoveIMG.Model.TaskParams
 
         private void setDefaultValues()
         {
-            ResizeMode = ResizeMode.Pixels;
+            ResizeMode = ResizeModeEnum.Pixels.ToString();
             MaintainRatio = true;
             NoEnlargeIfSmaller = true;
         }
