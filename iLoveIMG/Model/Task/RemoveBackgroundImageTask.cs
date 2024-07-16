@@ -13,7 +13,7 @@ namespace iLoveIMG.Model.Task
     /// <summary>
     ///     RemoveBackground Images
     /// </summary>
-    public class RemoveBackgroundTask : iLoveImgTask
+    public class RemoveBackgroundImageTask : iLoveImgTask
     {
         /// <inheritdoc />
         public override String ToolName => EnumExtensions.GetEnumDescription(TaskName.RemoveBackground);

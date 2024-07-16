@@ -41,5 +41,10 @@ namespace iLoveIMG.Model.Enums
         /// Remove background
         /// </summary>
         [Description("removebackgroundimage")] RemoveBackground = 5,
+
+        /// <summary>
+        /// Remove background
+        /// </summary>
+        [Description("upscaleimage")] Upscale = 6,
     }
 }
