@@ -13,7 +13,7 @@ namespace iLoveIMG.Core
     /// </summary>
     internal static class Settings
     {
-        public const String StartUrl = @"https://api.iloveimg.com";
+        public const String StartUrl = @"https://api.ilovepdf.com";
 
         public const String Host = @"https://";
 

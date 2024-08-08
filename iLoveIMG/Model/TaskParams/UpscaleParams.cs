@@ -22,12 +22,12 @@ namespace iLoveIMG.Model.TaskParams
         /// <summary>
         ///     Multiplier
         /// </summary>
-        [JsonProperty("multiplier ")]
+        [JsonProperty("multiplier")]
         public int Multiplier { get; set; }
 
         private void setDefaultValues()
         {
-            Multiplier = (int)UpscaleMultiplier.x2;
+            Multiplier = 2;
             
         }
     }

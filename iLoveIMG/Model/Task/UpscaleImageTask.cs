@@ -1,5 +1,6 @@
 ﻿using iLoveIMG.Core;
 using iLoveIMG.Model.Enums;
+using iLoveIMG.Model.Exceptions;
 using iLoveIMG.Model.TaskParams;
 using System;
 using System.Collections.Generic;
@@ -33,18 +34,15 @@ namespace iLoveIMG.Model.Task
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters")]
         public ExecuteTaskResponse Process(UpscaleParams parameters)
         {
+            if (parameters.Multiplier != 2 && parameters.Multiplier != 4)
+            {
+                throw new MultiplierException($"Invalid multiplier: {parameters.Multiplier}. Accepted values are 2 and 4.");
+            }
+
             if (parameters == null)
                 parameters = new UpscaleParams();
 
             return base.Process(parameters);
-        }
-
-        public void SetMultiplierParam(UpscaleMultiplier upscaleMultiplier)
-        {
-            var parameters = new UpscaleParams
-            {
-                Multiplier = (int)upscaleMultiplier
-            };
         }
     }
 }
