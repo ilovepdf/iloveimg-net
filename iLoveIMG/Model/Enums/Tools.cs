@@ -18,8 +18,33 @@ namespace iLoveIMG.Model.Enums
         [Description("compressimage")] CompressImage = 0,
 
         /// <summary>
-        ///     Conver image
+        ///     Convert image
         /// </summary>
         [Description("convertimage")] ConvertImage = 1,
+
+        /// <summary>
+        ///     Crop image
+        /// </summary>
+        [Description("cropimage")] CropImage = 2,
+
+        /// <summary>
+        ///     Rotate image
+        /// </summary>
+        [Description("rotateimage")] RotateImage = 3,
+
+        /// <summary>
+        ///     Resize image
+        /// </summary>
+        [Description("resizeimage")] ResizeImage = 4,
+
+        /// <summary>
+        /// Remove background
+        /// </summary>
+        [Description("removebackgroundimage")] RemoveBackground = 5,
+
+        /// <summary>
+        /// Remove background
+        /// </summary>
+        [Description("upscaleimage")] Upscale = 6,
     }
 }

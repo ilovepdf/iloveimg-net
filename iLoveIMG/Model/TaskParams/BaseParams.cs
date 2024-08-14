@@ -118,4 +118,11 @@ namespace iLoveIMG.Model.TaskParams
     public class UnlockParams : BaseParams
     {
     }
+
+    /// <summary>
+    ///     Remove background Params
+    /// </summary>
+    public class RemoveBackgroundParams : BaseParams
+    {
+    }
 }

@@ -24,8 +24,8 @@ namespace iLoveIMG.Model.TaskParams
         ///     ConvertTo
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
-        [JsonProperty("to")]
-        public ConvertToValues To { get; set; }
+        [JsonProperty("convert_to")]
+        public ConvertToValues ConvertTo { get; set; }
 
         /// <summary>
         ///     ConvertTo

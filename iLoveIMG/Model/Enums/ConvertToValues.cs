@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace iLoveIMG.Model.Enums
 {
     /// <summary>
-    ///     Compression Levels
+    ///     Convert Values
     /// </summary>
     public enum ConvertToValues
     {
