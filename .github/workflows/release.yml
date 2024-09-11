@@ -1,8 +1,8 @@
 name: Publish to NuGet
 
 on:
-  push:
-    branches: [ master ]
+  release:
+    types: [published]
     
 jobs:
   build:
@@ -16,7 +16,14 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '8.0'
+          
+      - name: Get version from release
+        id: get_version
+        run: echo "##[set-output name=VERSION;]${{ github.event.release.tag_name }}"
 
+      - name: Set version in .csproj
+        run: |
+          sed -i 's/<Version>.*<\/Version>/<Version>${{ steps.get_version.outputs.VERSION }}<\/Version>/g' **/*.csproj
       - name: Restore dependencies
         run: dotnet restore
 
