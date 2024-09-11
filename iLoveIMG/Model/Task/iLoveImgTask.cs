@@ -215,7 +215,7 @@ namespace iLoveIMG.Model.Task
         /// <returns>Server file name</returns>
         public UploadTaskResponse AddFile(Byte[] file, String taskId)
         {
-            return AddFile(file, taskId, Path.ChangeExtension(Guid.NewGuid().ToString("N"), ".pdf"));
+            return AddFile(file, taskId, Path.ChangeExtension(Guid.NewGuid().ToString("N"), ".jpg"));
         }
 
         /// <summary>

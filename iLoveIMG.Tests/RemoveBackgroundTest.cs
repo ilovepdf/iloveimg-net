@@ -15,7 +15,7 @@ namespace iLoveIMG.Tests
         {
             TaskParams = new RemoveBackgroundParams
             {
-                OutputFileName = @"result.jpg"
+                OutputFileName = @"result.png"
             };
         }
 
@@ -51,7 +51,7 @@ namespace iLoveIMG.Tests
         {
             InitApiWithRightCredentials();
 
-            AddFile($"{Guid.NewGuid()}.pdf", Settings.GoodJpgFile);
+            AddFile($"{Guid.NewGuid()}.png", Settings.GoodJpgFile);
 
             Assert.IsTrue(RunTask());
         }

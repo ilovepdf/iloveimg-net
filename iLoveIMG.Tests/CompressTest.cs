@@ -52,7 +52,7 @@ namespace iLoveIMG.Tests
         {
             InitApiWithRightCredentials();
 
-            AddFile($"{Guid.NewGuid()}.pdf", Settings.GoodJpgFile);
+            AddFile($"{Guid.NewGuid()}.jpg", Settings.GoodJpgFile);
 
             Assert.IsTrue(RunTask());
         }

@@ -1,5 +1,4 @@
-﻿using iLoveIMG.Model.Enums;
-using iLoveIMG.Model.Task;
+﻿using iLoveIMG.Model.Task;
 using iLoveIMG.Model.TaskParams;
 using System;
 using System.Collections.Generic;
@@ -10,17 +9,17 @@ using System.Threading.Tasks;
 namespace iLoveIMG.Tests
 {
     [TestClass]
-    public class ResizeTest : BaseTest
+    public class CropTest : BaseTest
     {
-        public ResizeTest()
+        public CropTest()
         {
-            TaskParams = new ResizeParams
+            TaskParams = new CropParams
             {
                 OutputFileName = @"result.jpg"
             };
         }
 
-        private new ResizeParams TaskParams { get; set; }
+        private new CropParams TaskParams { get; }
 
         protected override Boolean DoRunTask(
             Boolean addFilesByChunks,
@@ -29,10 +28,10 @@ namespace iLoveIMG.Tests
         {
             if (String.IsNullOrWhiteSpace(TaskParams.FileEncryptionKey))
                 Task = encryptUsingBuiltinIfNoKeyPresent
-                    ? Api.CreateTask<ResizeImageTask>(null, true)
-                    : Api.CreateTask<ResizeImageTask>();
+                    ? Api.CreateTask<CropImageTask>(null, true)
+                    : Api.CreateTask<CropImageTask>();
             else
-                Task = Api.CreateTask<ResizeImageTask>(TaskParams.FileEncryptionKey);
+                Task = Api.CreateTask<CropImageTask>(TaskParams.FileEncryptionKey);
 
             base.TaskParams = TaskParams;
 
@@ -48,15 +47,16 @@ namespace iLoveIMG.Tests
         }
 
         [TestMethod]
-        public void Resize_RightCredentials_ShouldThrowException()
+        public void Crop_RightCredentials_ShouldThrowException()
         {
             InitApiWithRightCredentials();
 
             AddFile($"{Guid.NewGuid()}.jpg", Settings.GoodJpgFile);
 
-            TaskParams.ResizeMode = ResizeModeEnum.Percentage.GetEnumMemberValue();
-            TaskParams.Percentage = 120;
-            
+            TaskParams.Widht = 300;
+            TaskParams.Height = 300;
+            TaskParams.X = 2;
+            TaskParams.Y = 2;
 
             Assert.IsTrue(RunTask());
         }

@@ -150,11 +150,9 @@ namespace iLoveIMG.Tests
                     ? $"{Settings.BasePath}{Path.DirectorySeparatorChar}{TaskParams.OutputFileName}"
                     : $"{Settings.BasePath}{Path.DirectorySeparatorChar}{Settings.DefaultSinglepageOutput}";
 
-            //if (Task.ToolName == EnumExtensions.GetEnumDescription(TaskName.PdfToJpg))
-            //    if (TaskParams.OutputFileName != null)
-            //        resultFile = TaskParams.PackageFileName != null
-            //            ? $"{Settings.BasePath}{Path.DirectorySeparatorChar}{TaskParams.PackageFileName}.zip"
-            //            : $"{Settings.BasePath}{Path.DirectorySeparatorChar}{TaskParams.OutputFileName.Replace("result", "result-0001")}";
+            if (Task.ToolName == EnumExtensions.GetEnumDescription(TaskName.RemoveBackground))
+                if (TaskParams.OutputFileName != null)
+                    resultFile =  $"{Settings.BasePath}{Path.DirectorySeparatorChar}{Settings.GoodPngFile}";
 
             if (File.Exists(resultFile))
                 File.Delete(resultFile);
@@ -214,13 +212,18 @@ namespace iLoveIMG.Tests
 
         protected void AddFile(String addedFileName, String originalFileName, String password = null, Action<string> callback = null)
         {
-            File.Copy($"{Settings.DataPath}{Path.DirectorySeparatorChar}{originalFileName}",
-                $"{Settings.DataPath}{Path.DirectorySeparatorChar}{addedFileName}");
+            //File.Copy($"{Settings.DataPath}{Path.DirectorySeparatorChar}{originalFileName}",
+            //    $"{Settings.DataPath}{Path.DirectorySeparatorChar}{addedFileName}");
 
             var file = new FileForTest
             {
-                FileName = $"{Settings.DataPath}{Path.DirectorySeparatorChar}{addedFileName}"
+                FileName = $"{Settings.DataPath}{Path.DirectorySeparatorChar}{originalFileName}"
             };
+
+            //var file = new FileForTest
+            //{
+            //    FileName = $"{Settings.DataPath}{Path.DirectorySeparatorChar}{addedFileName}"
+            //};
 
             if (password != null)
                 file.Password = password;
