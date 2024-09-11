@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Globalization;
 using System.Net;
+using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Authentication;
 using System.Text;
@@ -107,6 +108,18 @@ namespace iLoveIMG.Core
                 };
 
                 SetFormDataForExecuteTask(parameters, files, initalValues, multipartFormDataContent);
+
+                var contentDict = new Dictionary<string, string>();
+
+                foreach (var content in multipartFormDataContent)
+                {
+                    var stringContent = content.ReadAsStringAsync().Result;
+                    var fieldName = content.Headers.ContentDisposition.Name;
+                    contentDict.Add(fieldName, stringContent);
+                }
+
+                var json = JsonConvert.SerializeObject(contentDict, Formatting.Indented);
+
 
                 var response = HttpClient.Post(link, multipartFormDataContent);
                 return ProccessHttpResponse<ExecuteTaskResponse>(response);
