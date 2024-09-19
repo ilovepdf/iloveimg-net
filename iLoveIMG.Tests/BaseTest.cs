@@ -212,8 +212,8 @@ namespace iLoveIMG.Tests
 
         protected void AddFile(String addedFileName, String originalFileName, String password = null, Action<string> callback = null)
         {
-            //File.Copy($"{Settings.DataPath}{Path.DirectorySeparatorChar}{originalFileName}",
-            //    $"{Settings.DataPath}{Path.DirectorySeparatorChar}{addedFileName}");
+            File.Copy($"{Settings.DataPath}{Path.DirectorySeparatorChar}{originalFileName}",
+                $"{Settings.DataPath}{Path.DirectorySeparatorChar}{addedFileName}");
 
             var file = new FileForTest
             {

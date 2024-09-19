@@ -57,7 +57,13 @@ namespace iLoveIMG.Tests
         public const Int32 TimeoutSeconds = 60;
         public const String DefaultMultipageOutput = "output.zip";
         public const String DefaultSinglepageOutput = "result.jpg";
-        public static String BasePath => $"{AppDomain.CurrentDomain.SetupInformation.ApplicationBase}";
-        public static String DataPath => $"{BasePath}{Path.DirectorySeparatorChar}Data";
+        //public static String BasePath => $"{AppDomain.CurrentDomain.SetupInformation.ApplicationBase}";
+        //public static String DataPath => $"{BasePath}{Path.DirectorySeparatorChar}Data";
+
+        public static String BasePath = AppContext.BaseDirectory;
+        public static String DataPath = Path.Combine(BasePath, "..", "..", "..", "Data");
+        //public static String filePath = Path.Combine(dataDirectory, "archivo.txt");
+
+
     }
 }
