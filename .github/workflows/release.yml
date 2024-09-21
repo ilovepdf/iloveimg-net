@@ -36,7 +36,7 @@ jobs:
         run: dotnet test --no-restore --verbosity normal
 
       - name: Clean the project
-        run: dotnet clean iloveimg/iLoveIMG.csproj --configuration Release
+        run: dotnet clean ./iloveimg/iLoveIMG.csproj --configuration Release
   
       - name: Pack NuGet package
         run: dotnet pack ./iLoveIMG/iLoveIMG.csproj --configuration Release --output ./nupkg
