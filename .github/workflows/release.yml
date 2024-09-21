@@ -26,16 +26,16 @@ jobs:
         run: |
           sed -i 's/<Version>.*<\/Version>/<Version>${{ steps.get_version.outputs.VERSION }}<\/Version>/g' **/*.csproj
       - name: Restore dependencies
-        run: dotnet restore iloveimg/iLoveIMG.csproj
+        run: dotnet restore ./iLoveIMG/iLoveIMG.csproj
 
       - name: Build project
-        run: dotnet build iloveimg/iLoveIMG.csproj --configuration Release
+        run: dotnet build ./iLoveIMG/iLoveIMG.csproj --configuration Release
 
       - name: Run tests
         run: dotnet test --no-restore --verbosity normal
 
       - name: Pack NuGet package
-        run: dotnet pack iloveimg/iLoveIMG.csproj --configuration Release --output ./nupkg
+        run: dotnet pack ./iLoveIMG/iLoveIMG.csproj --configuration Release --output ./nupkg
 
       - name: List all files in working directory
         run: ls -R
