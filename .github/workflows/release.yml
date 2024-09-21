@@ -25,8 +25,9 @@ jobs:
       - name: Set version in .csproj
         run: |
           sed -i 's/<Version>.*<\/Version>/<Version>${{ steps.get_version.outputs.VERSION }}<\/Version>/g' **/*.csproj
+          
       - name: Restore dependencies
-        run: dotnet restore ./iLoveIMG/iLoveIMG.csproj
+        run: dotnet restore
 
       - name: Build
         run: dotnet build --configuration Release --no-restore
