@@ -37,5 +37,11 @@ jobs:
       - name: Pack the project
         run: dotnet pack --configuration Release --no-build --output ./nupkg
 
+      - name: List all files in working directory
+        run: ls -R
+
+      - name: Print working directory
+        run: pwd
+
       - name: Publish to NuGet
         run: dotnet nuget push ./nupkg/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source nuget.org
