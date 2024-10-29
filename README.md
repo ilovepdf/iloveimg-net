@@ -15,9 +15,9 @@ Minimum .NET Framework 4.5
 ```
 ### Simple usage looks like:
 ```csharp
-var loveImgApi = new LoveImgApi("project_public_id", "project_secret_key");
+var iloveImgApi = new iLoveImgApi("project_public_id", "project_secret_key");
 
-var task = loveImgApi.CreateTask<CompressImageTask>();
+var task = iloveImgApi.CreateTask<CompressImageTask>();
 var file = task.AddFile("https://www.w3.org/People/mimasa/test/imgformat/img/w3c_home.jpg", task.TaskId)
 var time = task.Process();
 task.DownloadFile("directory-to-download");
