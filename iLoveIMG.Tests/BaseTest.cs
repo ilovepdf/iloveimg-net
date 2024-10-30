@@ -127,20 +127,6 @@ namespace iLoveIMG.Tests
 
             var resultShouldBeMultipage = false;
 
-            //if (Task.ToolName == EnumExtensions.GetEnumDescription(TaskName.Split))
-            //{
-            //    var splitParams = (SplitParams)TaskParams;
-            //    if (splitParams.SplitMode == SplitModes.FixedRange || splitParams.SplitMode == SplitModes.Ranges)
-            //        if (splitParams.MergeAfter != true)
-            //            resultShouldBeMultipage = true;
-            //}
-
-            //if (Files.Count > 1 &&
-            //    Task.ToolName != EnumExtensions.GetEnumDescription(TaskName.Merge) &&
-            //    Task.ToolName != EnumExtensions.GetEnumDescription(TaskName.Edit) &&
-            //    Task.ToolName != EnumExtensions.GetEnumDescription(TaskName.WaterMark))
-            //    resultShouldBeMultipage = true;
-
             if (resultShouldBeMultipage)
                 resultFile = TaskParams.PackageFileName != null
                     ? $"{Settings.BasePath}{Path.DirectorySeparatorChar}{TaskParams.PackageFileName}.zip"

@@ -27,6 +27,9 @@ namespace iLoveIMG.Model.Task
                 parameters = new CropParams();
             }
 
+            if (parameters.Height == null || parameters.Widht == null)
+                throw new ArgumentException("cannot be null", nameof(parameters.Height) + " " + nameof(parameters.Widht));
+
             return base.Process(parameters);
         }
     }
