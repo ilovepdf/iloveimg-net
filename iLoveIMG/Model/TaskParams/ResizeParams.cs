@@ -54,6 +54,7 @@ namespace iLoveIMG.Model.TaskParams
         private void setDefaultValues()
         {
             ResizeMode = ResizeModeEnum.Pixels.ToString();
+            Percentage = 0;
             MaintainRatio = true;
             NoEnlargeIfSmaller = true;
         }
