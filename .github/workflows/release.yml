@@ -33,10 +33,7 @@ jobs:
         run: dotnet build --configuration Release --no-restore
   
       - name: Pack NuGet package
-        run: dotnet pack ./iLoveIMG/iLoveIMG.csproj --configuration Release --output ./nupkg
-
-      - name: List all files in working directory
-        run: ls -R
+        run: dotnet pack  --configuration Release ./iLoveIMG/iLoveIMG.csproj --output ./nupkg
 
       - name: Publish to NuGet
         run: dotnet nuget push ./nupkg/*.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source "https://api.nuget.org/v3/index.json"
