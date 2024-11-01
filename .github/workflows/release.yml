@@ -18,22 +18,21 @@ jobs:
         with:
           dotnet-version: '8.0'
           
-      - name: Get version from release
-        id: get_version
-        run: echo "##[set-output name=VERSION;]${{ github.event.release.tag_name }}"
-
-      - name: Set version in .csproj
-        run: |
-          sed -i 's/<Version>.*<\/Version>/<Version>${{ steps.get_version.outputs.VERSION }}<\/Version>/g' **/*.csproj
-          
       - name: Restore dependencies
         run: dotnet restore
-
+        
+      - name: Extract version from .csproj
+        id: get_version
+        run: |
+          VERSION=$(grep -oPm1 "(?<=<Version>)[^<]+" **/iLoveIMG.csproj)
+          echo "Version detected: $VERSION"
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+        
       - name: Build
         run: dotnet build --configuration Release --no-restore
   
       - name: Pack NuGet package
-        run: dotnet pack  --configuration Release ./iLoveIMG/iLoveIMG.csproj --output ./nupkg
+        run: dotnet pack  --configuration Release /p:PackageVersion=${{ env.VERSION }}
 
       - name: Publish to NuGet
-        run: dotnet nuget push ./nupkg/*.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source "https://api.nuget.org/v3/index.json"
+        run: dotnet nuget push **/bin/Release/*.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source "https://api.nuget.org/v3/index.json"
