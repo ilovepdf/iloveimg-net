@@ -1,10 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>netstandard1.5;netstandard2.0;net45;net46;net6.0;net8.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Version>1.1.0</Version>
+    <AssemblyName>ILoveImg</AssemblyName>
+		<AssemblyTitle>iLoveIMG</AssemblyTitle>
+    <Product>iLovePDF</Product>
+		<Description>Develop and automate image processing tasks like Compress IMAGE, convert to jpg, Convert from JPG, Rotate IMAGE, Resize IMAGE, Crop IMAGE, Upscale IMAGE, Remove Background, Waterkmar, HTML To IMAGE. Each one with several settings to get your desired results.</Description>
+    <Company>iLoveIMG</Company>
   </PropertyGroup>
 
   <ItemGroup>
