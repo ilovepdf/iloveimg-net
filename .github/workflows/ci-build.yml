@@ -4,6 +4,7 @@ on:
   push:
     branches: [ master ]
   workflow_dispatch:
+  
 jobs:
   build:
     strategy:
@@ -19,13 +20,13 @@ jobs:
       - name: Set up .NET SDK
         uses: actions/setup-dotnet@v3 
         with: 
-          dotnet-version: 8.0.x
+          dotnet-version: 8.0.x iLoveIMG
             
       - name: Install dependencies
         run: dotnet restore
         
       - name: Build  ${{ matrix.dotnet }}
-        run: dotnet build --configuration Release --no-restore --framework  ${{ matrix.dotnet }}
+        run: dotnet build --configuration Release iLoveIMG --no-restore --framework  ${{ matrix.dotnet }}
  
         
   build_all_in_net46:
