@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        dotnet: [ 'net8.0', 'net6.0', 'net45', 'netstandard2.0', 'netstandard1.5' ]
+        dotnet: [ 'net6.0', 'net45', 'netstandard2.0', 'netstandard1.5' ]
         
     runs-on: ${{ matrix.os }}
     steps:
@@ -20,10 +20,10 @@ jobs:
       - name: Set up .NET SDK
         uses: actions/setup-dotnet@v3 
         with: 
-          dotnet-version: 8.0.x iLoveIMG
+          dotnet-version: 8.0.x
             
       - name: Install dependencies
-        run: dotnet restore
+        run: dotnet restore iLoveIMG
         
       - name: Build  ${{ matrix.dotnet }}
         run: dotnet build --configuration Release iLoveIMG --no-restore --framework  ${{ matrix.dotnet }}
