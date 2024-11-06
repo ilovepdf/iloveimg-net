@@ -33,7 +33,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        dotnet: [ 'net46' ]
+        dotnet: ['net8.0']
         
     runs-on: ${{ matrix.os }}
     steps:
