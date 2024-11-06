@@ -29,7 +29,7 @@ jobs:
         run: dotnet build --configuration Release iLoveIMG --no-restore --framework  ${{ matrix.dotnet }}
  
         
-  build_all_in_net46:
+  build_all_in_net8:
     strategy:
       matrix:
         os: [ubuntu-latest]
