@@ -1,0 +1,55 @@
+name: CI Build
+
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+  
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        dotnet: [ 'net6.0', 'net6.0', 'net45', 'netstandard2.0' ]
+        
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up .NET SDK
+        uses: actions/setup-dotnet@v3 
+        with: 
+          dotnet-version: 8.0.x
+            
+      - name: Install dependencies
+        run: dotnet restore iLoveIMG
+        
+      - name: Build  ${{ matrix.dotnet }}
+        run: dotnet build --configuration Release iLoveIMG --no-restore --framework  ${{ matrix.dotnet }}
+ 
+        
+  build_all_in_net8:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        dotnet: ['net8.0']
+        
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3 
+
+      - name: Set up .NET SDK
+        uses: actions/setup-dotnet@v3 
+        with: 
+          dotnet-version: 8.0.x
+             
+      - name: Install dependencies
+        run: dotnet restore 
+        
+      - name: Build  ${{ matrix.dotnet }}
+        run: dotnet build --configuration Release --no-restore --framework  ${{ matrix.dotnet }}
+
+      - name: Run tests
+        run: dotnet test --no-restore --verbosity normal

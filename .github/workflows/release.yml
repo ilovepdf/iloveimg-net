@@ -1,0 +1,38 @@
+name: Publish to NuGet
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0'
+          
+      - name: Restore dependencies
+        run: dotnet restore
+        
+      - name: Extract version from .csproj
+        id: get_version
+        run: |
+          VERSION=$(grep -oPm1 "(?<=<Version>)[^<]+" **/iLoveIMG.csproj)
+          echo "Version detected: $VERSION"
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+        
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+  
+      - name: Pack NuGet package
+        run: dotnet pack  iLoveIMG/iLoveIMG.csproj --configuration Release /p:PackageVersion=${{ env.VERSION }}
+
+      - name: Publish to NuGet
+        run: dotnet nuget push iLoveIMG/bin/Release/*.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json

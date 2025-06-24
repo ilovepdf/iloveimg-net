@@ -1,4 +1,7 @@
-﻿namespace iLoveIMG.Helpers
+﻿using System;
+using System.Net.Http;
+
+namespace iLoveIMG.Helpers
 {
     public static class TaskHelper
     {
