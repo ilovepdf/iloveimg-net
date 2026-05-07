@@ -4,7 +4,11 @@ on:
   release:
     types: [published]
   workflow_dispatch:
-    
+    inputs:
+      version:
+        description: 'Version to publish (Fallback if not a Release)'
+        required: true
+        
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -21,18 +25,30 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore
         
-      - name: Extract version from .csproj
+      - name: Get version
         id: get_version
+        shell: bash
         run: |
-          VERSION=$(grep -oPm1 "(?<=<Version>)[^<]+" **/iLoveIMG.csproj)
-          echo "Version detected: $VERSION"
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          if [ -n "${{ github.event.release.tag_name }}" ]; then
+            SELECTED_VERSION="${{ github.event.release.tag_name }}"
+          else
+            SELECTED_VERSION="${{ github.event.inputs.version }}"
+          fi
+          CLEAN_VERSION=$(echo $SELECTED_VERSION | sed 's/^v//')
+          echo "VERSION=$CLEAN_VERSION" >> $GITHUB_OUTPUT
+        
+      - name: Set version in .csproj
+        run: |
+          sed -i 's/<Version>.*<\/Version>/<Version>${{ steps.get_version.outputs.VERSION }}<\/Version>/g' **/*.csproj
+
+      - name: Restore dependencies
+        run: dotnet restore
         
       - name: Build
         run: dotnet build --configuration Release --no-restore
   
       - name: Pack NuGet package
-        run: dotnet pack  iLoveIMG/iLoveIMG.csproj --configuration Release /p:PackageVersion=${{ env.VERSION }}
+        run: dotnet pack  iLoveIMG/iLoveIMG.csproj --configuration Release /p:PackageVersion=${{ steps.get_version.outputs.VERSION }}
 
       - name: Publish to NuGet
         run: dotnet nuget push iLoveIMG/bin/Release/*.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
