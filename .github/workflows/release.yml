@@ -49,13 +49,6 @@ jobs:
   
       - name: Pack NuGet package
         run: dotnet pack  iLoveIMG/iLoveIMG.csproj --configuration Release /p:PackageVersion=${{ steps.get_version.outputs.VERSION }}
-      
-      - name: Unlist version 4.3.0
-        run: |
-          dotnet nuget delete iLoveIMG 4.3.0 \
-            --api-key ${{ secrets.NUGET_TOKEN }} \
-            --source https://api.nuget.org/v3/index.json \
-            --non-interactive
             
       - name: Publish to NuGet
         run: dotnet nuget push iLoveIMG/bin/Release/*.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
